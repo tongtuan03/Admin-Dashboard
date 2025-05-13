@@ -1,42 +1,46 @@
 {
-  "tasks": 
-  [
-     {
-      "id": "728ed52f",
-      "name":"TASK-7839",
+  "tasks": [
+    {
+      "id": "TASK-7839",
       "title": "We need to bypass the neural TCP card!",
       "status": "Backlog",
+      "label": "Documentation",
       "priority": "Low"
     },
     {
-      "id": "728ed52f",
-      "name":"TASK-1280",
+      "id": "TASK-1280",
       "title": "Use the digital TLS panel, then you can transmit the haptic system!",
       "status": "Canceled",
+      "label": "Feature",
       "priority": "High"
     },
     {
-      "id": "728ed52f",
-      "name":"TASK-7262",
+      "id": "TASK-7262",
       "title": "The UTF8 application is down, parse the neural bandwidth so we can back up ",
       "status": "Todo",
+      "label": "Documentation",
       "priority": "Medium"
     },
     {
-      "id": "728ed52f",
-      "name":"TASK-5160",
+      "id": "TASK-5160",
       "title": "Calculating the bus won't do anything, we need to navigate the back-end JSO",
       "status": "In Progress",
+      "label": "Bug",
       "priority": "Medium"
     },
     {
-      "id": "728ed52f",
-      "name":"TASK-9864",
+      "id": "TASK-9864",
       "title": "I'll reboot the 1080p FTP panel, that should matrix the HEX hard drive!",
       "status": "Done",
+      "label": "Bug",
       "priority": "Medium"
+    },
+    {
+      "title": "aaa",
+      "status": "Backlog",
+      "label": "Documentation",
+      "priority": "High",
+      "id": "Task-9873"
     }
   ]
-  
 }
-

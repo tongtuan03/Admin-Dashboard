@@ -23,10 +23,65 @@ import React from "react"
 import { Input } from "@/components/ui/input"
 import { DataTablePagination } from "@/components/ui/table-pagination"
 import { DataTableViewOptions } from "@/components/ui/column-toggle"
+import {
+    CircleAlert,
+    CircleDot,
+    Timer,
+    CheckCircle,
+    XCircle,
+    ArrowUp,
+    ArrowDown,
+    MoveRight
+} from "lucide-react";
+import { DataTableColumnFilter } from "@/components/ui/column-filter"
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
     data: TData[]
 }
+const statusList = [
+    {
+        value: "Backlog",
+        label: "Backlog",
+        icon: CircleAlert,
+    },
+    {
+        value: "Todo",
+        label: "Todo",
+        icon: CircleDot,
+    },
+    {
+        value: "In Progress",
+        label: "In Progress",
+        icon: Timer,
+    },
+    {
+        value: "Done",
+        label: "Done",
+        icon: CheckCircle,
+    },
+    {
+        value: "Canceled",
+        label: "Canceled",
+        icon: XCircle,
+    },
+];
+const priorityList = [
+    {
+        value: "Low",
+        label: "Low",
+        icon: ArrowDown,
+    },
+    {
+        value: "Medium",
+        label: "Medium",
+        icon: MoveRight,
+    },
+    {
+        value: "High",
+        label: "High",
+        icon: ArrowUp,
+    },
+];
 export function DataTable<TData, TValue>({
     columns,
     data,
@@ -64,8 +119,11 @@ export function DataTable<TData, TValue>({
                     }
                     className="max-w-sm"
                 />
+                <DataTableColumnFilter columnName="Status" listItem={statusList} table={table} data={data}/>
+                <DataTableColumnFilter columnName="Priority" listItem={priorityList} table={table} data={data}/>
+                <DataTableViewOptions table={table} />
             </div>
-            <DataTableViewOptions table={table} />
+
             <div className="rounded-md border">
                 <Table>
                     <TableHeader>
