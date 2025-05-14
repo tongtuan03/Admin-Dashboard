@@ -1,4 +1,18 @@
 {
+  "auth": [
+    {
+      "id": "674d",
+      "email": "quen@gmail.com",
+      "password": "123456",
+      "confirmPassword": "123456"
+    },
+    {
+      "id": "22f9",
+      "email": "t@gmail.com",
+      "password": "123456",
+      "confirmPassword": "123456"
+    }
+  ],
   "users": [
     {
       "userName": "kallie.maggio",

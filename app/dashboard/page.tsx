@@ -1,4 +1,8 @@
-export default function DashboardPage() {
-    return <h1 className="text-2xl font-bold">Dashboard</h1>;
-  }
-  
+"use client"
+export default function Dashboard() {
+  return (
+    <div>
+      <h2>Dashboard</h2>
+    </div>
+  );
+}
