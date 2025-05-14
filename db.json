@@ -1,22 +1,113 @@
 {
-  "todos": 
-  [
+  "users": [
     {
-      "id": "1",
-      "name": "Do Homework",
-      "completed": false
+      "userName": "kallie.maggio",
+      "firstName": "Kallie ",
+      "lastName": "Maggio",
+      "email": "kallie.hyatt78@yahoo.com",
+      "phoneNumber": "+12694954814",
+      "role": "Superadmin",
+      "password": "1234ert",
+      "status": "Suspended",
+      "id": "ads"
     },
     {
-      "id": "2",
-      "name": "Have Dinner",
-      "completed": true
+      "id": "ads",
+      "userName": "tomasa_hilll80",
+      "firstName": "Tomasa  ",
+      "lastName": "Hilll",
+      "email": "tomasa.bradtke@hotmail.com",
+      "phoneNumber": "+18982828906",
+      "status": "Invited",
+      "role": "Manager",
+      "password": "1234ert"
     },
     {
-      "id": "3",
-      "name": "Buy Fruits",
-      "completed": false
+      "id": "user-9873",
+      "userName": "123",
+      "firstName": "qwer",
+      "lastName": "wer",
+      "email": "123",
+      "phoneNumber": "123",
+      "role": "Admin",
+      "password": "123",
+      "status": "Active"
+    },
+    {
+      "id": "user-9873",
+      "userName": "123",
+      "firstName": "wer",
+      "lastName": "wer",
+      "email": "123",
+      "phoneNumber": "123",
+      "role": "Cashier",
+      "password": "123",
+      "status": "Inactive"
+    }
+  ],
+  "tasks": [
+    {
+      "title": "123",
+      "status": "Backlog",
+      "label": "Documentation",
+      "priority": "Low",
+      "id": "TASK-7839"
+    },
+    {
+      "id": "TASK-1280",
+      "title": "Use the digital TLS panel, then you can transmit the haptic system!",
+      "status": "Canceled",
+      "label": "Feature",
+      "priority": "High"
+    },
+    {
+      "id": "TASK-7262",
+      "title": "The UTF8 application is down, parse the neural bandwidth so we can back up ",
+      "status": "Todo",
+      "label": "Documentation",
+      "priority": "Medium"
+    },
+    {
+      "id": "TASK-5160",
+      "title": "Calculating the bus won't do anything, we need to navigate the back-end JSO",
+      "status": "In Progress",
+      "label": "Bug",
+      "priority": "Medium"
+    },
+    {
+      "id": "TASK-9864",
+      "title": "I'll reboot the 1080p FTP panel, that should matrix the HEX hard drive!",
+      "status": "Done",
+      "label": "Bug",
+      "priority": "Medium"
+    },
+    {
+      "id": "TASK-9873",
+      "title": " We need to bypass the neural TCP card!",
+      "status": "Backlog",
+      "label": "Feature",
+      "priority": "High"
+    },
+    {
+      "id": "TASK-9873",
+      "title": " We need to bypass the neural TCP card!",
+      "status": "Inprogress",
+      "label": "Feature",
+      "priority": "High"
+    },
+    {
+      "id": "TASK-9873",
+      "title": " We need to bypass the neural TCP card!",
+      "status": "Canceled",
+      "label": "Feature",
+      "priority": "Low"
+    },
+    {
+      "id": "TASK-9873",
+      "title": "Sinh vien",
+      "status": "Todo",
+      "label": "Documentation",
+      "priority": "High"
     }
   ]
-  
 }
-
