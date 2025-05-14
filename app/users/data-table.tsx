@@ -24,14 +24,14 @@ import { Input } from "@/components/ui/input"
 import { DataTablePagination } from "@/components/ui/table-pagination"
 import { DataTableViewOptions } from "@/components/ui/column-toggle"
 import {
-    CircleAlert,
-    CircleDot,
     Timer,
     CheckCircle,
-    XCircle,
-    ArrowUp,
-    ArrowDown,
-    MoveRight
+    CircleSlash,
+    Ban,
+    Shield,
+    UserPlus,
+    Users,
+    Wallet
 } from "lucide-react";
 import { DataTableColumnFilter } from "@/components/ui/column-filter"
 interface DataTableProps<TData, TValue> {
@@ -40,46 +40,46 @@ interface DataTableProps<TData, TValue> {
 }
 const statusList = [
     {
-        value: "Backlog",
-        label: "Backlog",
-        icon: CircleAlert,
-    },
-    {
-        value: "Todo",
-        label: "Todo",
-        icon: CircleDot,
-    },
-    {
-        value: "In Progress",
-        label: "In Progress",
-        icon: Timer,
-    },
-    {
-        value: "Done",
-        label: "Done",
+        value: "Active",
+        label: "Active",
         icon: CheckCircle,
     },
     {
-        value: "Canceled",
-        label: "Canceled",
-        icon: XCircle,
+        value: "Inactive",
+        label: "Inactive",
+        icon: CircleSlash,
+    },
+    {
+        value: "Invited",
+        label: "Invited",
+        icon: Timer,
+    },
+    {
+        value: "Suspended",
+        label: "Suspended",
+        icon: Ban,
     },
 ];
-const priorityList = [
+const roleList = [
     {
-        value: "Low",
-        label: "Low",
-        icon: ArrowDown,
+        value: "Superadmin",
+        label: "Superadmin",
+        icon: Shield,
     },
     {
-        value: "Medium",
-        label: "Medium",
-        icon: MoveRight,
+        value: "Admin",
+        label: "Admin",
+        icon: UserPlus,
     },
     {
-        value: "High",
-        label: "High",
-        icon: ArrowUp,
+        value: "Manager",
+        label: "Manager",
+        icon: Users,
+    },
+    {
+        value: "Cashier",
+        label: "Cashier",
+        icon: Wallet,
     },
 ];
 export function DataTable<TData, TValue>({
@@ -112,15 +112,15 @@ export function DataTable<TData, TValue>({
         <div>
             <div className="flex items-center py-4">
                 <Input
-                    placeholder="Filter tasks..."
-                    value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
+                    placeholder="Filter Users..."
+                    value={(table.getColumn("userName")?.getFilterValue() as string) ?? ""}
                     onChange={(event) =>
-                        table.getColumn("title")?.setFilterValue(event.target.value)
+                        table.getColumn("userName")?.setFilterValue(event.target.value)
                     }
                     className="max-w-sm"
                 />
-                <DataTableColumnFilter columnName="Status" listItem={statusList} table={table} data={data} />
-                <DataTableColumnFilter columnName="Priority" listItem={priorityList} table={table} data={data} />
+                <DataTableColumnFilter columnName="Status" listItem={statusList} table={table} data={data}/>
+                <DataTableColumnFilter columnName="Role" listItem={roleList} table={table} data={data}/>
                 <DataTableViewOptions table={table} />
             </div>
 

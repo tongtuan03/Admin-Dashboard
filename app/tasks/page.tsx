@@ -1,26 +1,24 @@
 "use client"
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { DataTable } from "./data-table"
 import axios from "@/lib/axios";
 import { Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
-  SheetClose,
   SheetContent,
   SheetDescription,
-  SheetFooter,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
 
-import TasksForm, { TaskFormRef } from "./tasks-form";
+import TasksForm, { } from "./tasks-form";
 import { TaskFormData } from "@/models/taskForm";
 import { getColumns } from "./columns";
+import { toast } from "sonner";
 export default function TaskPage() {
   const [data, setData] = useState<TaskFormData[]>([])
-  const formRef = useRef<TaskFormRef>(null);
   const handleSubmit = async (data: TaskFormData) => {
     console.log("Submitted from parent:", data);
     const task: TaskFormData = {
@@ -31,15 +29,15 @@ export default function TaskPage() {
       priority: data.priority
     }
     try {
-      const response = await axios.post("/tasks", task);
+      await axios.post("/tasks", task);
       fetchData();
-      console.log("✅ Task created:", response.data);
+      toast.success('Task created successfully!');
 
     } catch (error) {
-      console.error("Error creating task:", error);
+      toast.error("Error creating user: " + error);
     }
   };
-  
+
   const fetchData = () => {
     axios.get("/tasks")
       .then((res) => setData(res.data))
@@ -67,12 +65,7 @@ export default function TaskPage() {
                   Add a new task by providing necessary info.Click save when you're done.
                 </SheetDescription>
               </SheetHeader>
-              <TasksForm ref={formRef} onSubmit={handleSubmit} mode="create" />
-              <SheetFooter>
-                <SheetClose asChild>
-                  <Button onClick={() => { formRef.current?.submit() }}>Save changes</Button>
-                </SheetClose>
-              </SheetFooter>
+              <TasksForm onSubmit={handleSubmit} />
             </SheetContent>
           </Sheet>
         </div>

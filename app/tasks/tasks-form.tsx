@@ -1,5 +1,3 @@
-// create-tasks-form.tsx
-
 import React, { forwardRef, useImperativeHandle } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -16,20 +14,18 @@ import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { TaskFormData, taskSchema } from "@/models/taskForm";
-
-
-
-export type TaskFormRef = {
-    submit: () => void;
-};
+import { SheetClose, SheetFooter } from "@/components/ui/sheet";
+import { Button } from "@/components/ui/button";
 
 type Props = {
     onSubmit: (data: TaskFormData) => void;
     defaultValues?: TaskFormData;
-    mode?: "create" | "update";
 };
 
-const TasksForm = forwardRef<TaskFormRef, Props>(({ onSubmit, defaultValues, mode = "create" }, ref) => {
+function TasksForm({
+    onSubmit,
+    defaultValues,
+}: Props) {
     const {
         register,
         handleSubmit,
@@ -41,20 +37,6 @@ const TasksForm = forwardRef<TaskFormRef, Props>(({ onSubmit, defaultValues, mod
         defaultValues,
     });
 
-    useImperativeHandle(ref, () => ({
-        submit: () => {
-            handleSubmit(
-                (data) => {
-                    console.log(`${mode === "create" ? "Creating" : "Updating"}:`, data);
-                    onSubmit(data);
-                },
-                (errors) => {
-                    console.log("Validation failed", errors);
-                }
-            )();
-        },
-    }));
-
     React.useEffect(() => {
         if (defaultValues) {
             reset(defaultValues);
@@ -62,7 +44,7 @@ const TasksForm = forwardRef<TaskFormRef, Props>(({ onSubmit, defaultValues, mod
     }, [defaultValues, reset]);
 
     return (
-        <form className="grid gap-4 px-4">
+        <form className="grid gap-4 px-4" onSubmit={handleSubmit(onSubmit)}>
             <div className="grid grid-cols-2 items-start gap-4">
                 <Label>Title</Label>
                 <Input className="col-span-3" {...register("title")} />
@@ -144,8 +126,13 @@ const TasksForm = forwardRef<TaskFormRef, Props>(({ onSubmit, defaultValues, mod
                 />
                 {errors.priority && <p className="text-red-500 text-sm">{errors.priority.message}</p>}
             </div>
+            <SheetFooter>
+                <SheetClose asChild>
+                    <Button type="submit">Save changes</Button>
+                </SheetClose>
+            </SheetFooter>
         </form>
     );
-});
+}
 
 export default TasksForm;

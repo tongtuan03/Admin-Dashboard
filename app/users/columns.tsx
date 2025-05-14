@@ -23,19 +23,20 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
-import axios from "@/lib/axios"
 import {
-    Sheet,
-    SheetContent,
-    SheetDescription,
-    SheetHeader,
-    SheetTitle,
-    SheetTrigger,
-} from "@/components/ui/sheet"
-import TasksForm, { } from "./tasks-form"
-import { TaskFormData } from "@/models/taskForm"
+    Dialog,
+    DialogTrigger,
+    DialogContent,
+    DialogHeader,
+    DialogTitle,
+    DialogDescription,
+} from "@/components/ui/dialog"
+import UsersForm, { } from "./users-form"
+import { UserFormData } from "@/models/userForm"
+import axios from "@/lib/axios"
 import { toast } from "sonner"
-export const getColumns = (fetchData: () => void): ColumnDef<TaskFormData>[] => [
+
+export const getColumns = (fetchData: () => void): ColumnDef<UserFormData>[] => [
     {
         id: "select",
         header: ({ table }) => (
@@ -59,40 +60,45 @@ export const getColumns = (fetchData: () => void): ColumnDef<TaskFormData>[] => 
         enableHiding: false,
     },
     {
-        accessorKey: "id",
-        header: "Task",
+        accessorKey: "userName",
+        header: ({ column }) => (
+            <DataTableColumnHeader column={column} title="Username" />
+        ),
     },
     {
-        accessorKey: "title",
-        header: ({ column }) => (
-            <DataTableColumnHeader column={column} title="Title" />
-        ),
+        accessorKey: "name",
+        header: "Name",
         cell: ({ row }) => {
-            const task = row.original;
+            const user = row.original;
             return (
-                <div className="flex items-center gap-2">
-                    <span className="text-sm text-muted-foreground border-2 rounded-sm p-0.5">{task.label}</span>
-                    <span className="font-medium">{task.title}</span>
+                <div className="items-center gap-2">
+                    <span>{user.firstName}</span>
+                    <span>{user.lastName}</span>
                 </div>
             );
         },
     },
     {
-        accessorKey: "status",
+        accessorKey: "email",
         header: ({ column }) => (
-            <DataTableColumnHeader column={column} title="Status" />
+            <DataTableColumnHeader column={column} title="Email" />
         ),
+    },
+    {
+        accessorKey: "phoneNumber",
+        header: "Phone Number",
+    },
+    {
+        accessorKey: "status",
+        header: "Status",
         filterFn: (row, columnId, filterValue) => {
             if (!filterValue || filterValue.length === 0) return true;
             return filterValue.includes(row.getValue(columnId));
         }
-
     },
     {
-        accessorKey: "priority",
-        header: ({ column }) => (
-            <DataTableColumnHeader column={column} title="Priority" />
-        ),
+        accessorKey: "role",
+        header: "Role",
         filterFn: (row, columnId, filterValue) => {
             if (!filterValue || filterValue.length === 0) return true;
             return filterValue.includes(row.getValue(columnId));
@@ -101,44 +107,49 @@ export const getColumns = (fetchData: () => void): ColumnDef<TaskFormData>[] => 
     {
         id: "actions",
         cell: ({ row }) => {
-            const task = row.original;
+            const User = row.original;
             const handleDelete = async () => {
-                axios.delete(`/tasks/${task.id}`)
+                axios.delete(`/users/${User.id}`)
                     .then(() => {
-                        toast.success('Task deleted successfully!', {
+                        toast.success('User deleted successfully!', {
                             duration: 2000
                         });
+
                         fetchData();
                     })
                     .catch((error) => {
-                        toast.success("Error deleting Task:" + error, {
+                        toast.success("Error deleting User:" + error, {
                             duration: 2000
                         });
+
                     });
             };
-            const handleUpdate = async (data: TaskFormData) => {
-                console.log("Submitted from parent:", data);
-                axios.put(`/tasks/${task.id}`, {
-                    title: data.title,
+            const handleUpdate = async (data: UserFormData) => {
+                axios.put(`/users/${User.id}`, {
+                    userName: data.userName,
+                    firstName: data.firstName,
+                    lastName: data.lastName,
+                    email: data.email,
+                    phoneNumber: data.phoneNumber,
+                    role: data.role,
+                    password: data.password,
                     status: data.status,
-                    label: data.label,
-                    priority: data.priority
-                })
-                    .then((res) => {
-                        toast.success('Task updated successfully!', {
-                            duration: 2000
-                        });
-                        fetchData();
-                    })
-                    .catch((error) => {
-                        toast.success("Error updating Task:" + error, {
-                            duration: 2000
-                        });
+                }).then((res) => {
+                    fetchData();
+                    toast.success('User updated successfully!', {
+                        duration: 2000
                     });
+
+                }).catch((error) => {
+                    toast.success("Error updating User:" + error, {
+                        duration: 2000
+                    });
+
+                });
             };
             return (
                 <AlertDialog>
-                    <Sheet>
+                    <Dialog>
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                                 <Button variant="ghost" className="h-8 w-8 p-0">
@@ -148,14 +159,14 @@ export const getColumns = (fetchData: () => void): ColumnDef<TaskFormData>[] => 
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end">
                                 <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                                <SheetTrigger asChild>
+                                <DialogTrigger asChild>
                                     <DropdownMenuItem
                                         className="flex justify-between"
                                     >
                                         Edit
                                         <Edit />
                                     </DropdownMenuItem>
-                                </SheetTrigger>
+                                </DialogTrigger>
                                 <DropdownMenuSeparator />
                                 <AlertDialogTrigger asChild>
                                     <DropdownMenuItem className="flex justify-between">
@@ -167,9 +178,9 @@ export const getColumns = (fetchData: () => void): ColumnDef<TaskFormData>[] => 
 
                         <AlertDialogContent>
                             <AlertDialogHeader>
-                                <AlertDialogTitle>Delete this task: {task.id} ?</AlertDialogTitle>
+                                <AlertDialogTitle>Delete this User: {User.userName} ?</AlertDialogTitle>
                                 <AlertDialogDescription>
-                                    You are about to delete a task with the ID {task.id}.
+                                    You are about to delete a User with the ID {User.userName}.
                                     This action cannot be undone.
                                 </AlertDialogDescription>
                             </AlertDialogHeader>
@@ -179,18 +190,17 @@ export const getColumns = (fetchData: () => void): ColumnDef<TaskFormData>[] => 
                             </AlertDialogFooter>
                         </AlertDialogContent>
 
-                        <SheetContent>
-                            <SheetHeader>
-                                <SheetTitle>
-                                    Update Task</SheetTitle>
-                                <SheetDescription>
-                                    Update the task by providing necessary info.Click save when you're done.
-                                </SheetDescription>
-                            </SheetHeader>
-                            <TasksForm onSubmit={handleUpdate} defaultValues={task} />
-                        </SheetContent>
-                    </Sheet>
-                </AlertDialog>
+                        <DialogContent className="sm:max-w-[600px]">
+                            <DialogHeader>
+                                <DialogTitle>Edit User</DialogTitle>
+                                <DialogDescription>
+                                    Update the user here. Click save when you're done.
+                                </DialogDescription>
+                            </DialogHeader>
+                            <UsersForm onSubmit={handleUpdate} defaultValues={User} />
+                        </DialogContent>
+                    </Dialog>
+                </AlertDialog >
             )
         },
     },

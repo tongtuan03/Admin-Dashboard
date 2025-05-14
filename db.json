@@ -1,11 +1,57 @@
 {
+  "users": [
+    {
+      "userName": "kallie.maggio",
+      "firstName": "Kallie ",
+      "lastName": "Maggio",
+      "email": "kallie.hyatt78@yahoo.com",
+      "phoneNumber": "+12694954814",
+      "role": "Superadmin",
+      "password": "1234ert",
+      "status": "Suspended",
+      "id": "ads"
+    },
+    {
+      "id": "ads",
+      "userName": "tomasa_hilll80",
+      "firstName": "Tomasa  ",
+      "lastName": "Hilll",
+      "email": "tomasa.bradtke@hotmail.com",
+      "phoneNumber": "+18982828906",
+      "status": "Invited",
+      "role": "Manager",
+      "password": "1234ert"
+    },
+    {
+      "id": "user-9873",
+      "userName": "123",
+      "firstName": "qwer",
+      "lastName": "wer",
+      "email": "123",
+      "phoneNumber": "123",
+      "role": "Admin",
+      "password": "123",
+      "status": "Active"
+    },
+    {
+      "id": "user-9873",
+      "userName": "123",
+      "firstName": "wer",
+      "lastName": "wer",
+      "email": "123",
+      "phoneNumber": "123",
+      "role": "Cashier",
+      "password": "123",
+      "status": "Inactive"
+    }
+  ],
   "tasks": [
     {
-      "id": "TASK-7839",
-      "title": "We need to bypass the neural TCP card!",
+      "title": "123",
       "status": "Backlog",
       "label": "Documentation",
-      "priority": "Low"
+      "priority": "Low",
+      "id": "TASK-7839"
     },
     {
       "id": "TASK-1280",
@@ -36,11 +82,32 @@
       "priority": "Medium"
     },
     {
-      "title": "aaa",
+      "id": "TASK-9873",
+      "title": " We need to bypass the neural TCP card!",
       "status": "Backlog",
+      "label": "Feature",
+      "priority": "High"
+    },
+    {
+      "id": "TASK-9873",
+      "title": " We need to bypass the neural TCP card!",
+      "status": "Inprogress",
+      "label": "Feature",
+      "priority": "High"
+    },
+    {
+      "id": "TASK-9873",
+      "title": " We need to bypass the neural TCP card!",
+      "status": "Canceled",
+      "label": "Feature",
+      "priority": "Low"
+    },
+    {
+      "id": "TASK-9873",
+      "title": "Sinh vien",
+      "status": "Todo",
       "label": "Documentation",
-      "priority": "High",
-      "id": "Task-9873"
+      "priority": "High"
     }
   ]
 }

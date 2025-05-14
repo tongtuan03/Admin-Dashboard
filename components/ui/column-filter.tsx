@@ -31,7 +31,6 @@ export function DataTableColumnFilter<TData>({
     table,
     columnName,
     listItem,
-
 }: Readonly<DataTableColumnFilterProps<TData>>) {
     const [selected, setSelected] = useState<string[]>([])
 
@@ -51,7 +50,6 @@ export function DataTableColumnFilter<TData>({
         setSelected([]);
         table.getColumn(columnName.toLowerCase())?.setFilterValue(undefined);
     }
-
 
     return (
         <Popover>
@@ -87,7 +85,6 @@ export function DataTableColumnFilter<TData>({
 
                             );
                         })}
-
 
                     </CommandGroup>
                     <CommandGroup>
